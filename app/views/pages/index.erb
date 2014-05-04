@@ -1,0 +1,37 @@
+<div class="container">
+  <div ng-controller="TopUrlsController">
+    <h1>Top URLs</h1>
+    <ul class="unstyled">
+      <li ng-repeat="(key,day) in days">
+      <h2>{{key}}</h2>
+        <div ng-repeat="url in day">
+          {{url.url || 'Unknown'}} => {{url.visits}} visits 
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <div ng-controller="TopReferresController">
+    <h1>Top Referres</h1>
+    <ul class="unstyled">
+      <li ng-repeat="(key,day) in days">
+        <h2>{{key}}</h2>
+        <div ng-repeat="visiting_page in day">
+          <h4>Visiting page {{visiting_page.url || 'Unknown'}} => {{visiting_page.visits}} visits </h4>
+          <h5>Referrers</h5>
+          <div ng-repeat="referrer in visiting_page.referrers">
+            {{referrer.url || 'Unknown'}} => {{referrer.visits}} visits 
+
+          </div>
+        </div>
+        
+      </li>
+    </ul>
+
+  </div>
+
+</div>
+
+<script>
+  var REPORT_DATA = <%= @data_hash.to_json.html_safe%>
+</script>
