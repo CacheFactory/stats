@@ -4,20 +4,12 @@ class ReportMaker
   def self.top_urls
 
     get_visits_for_the_past_five_days do |visits,end_date, start_date,days_hash, days_ago|
-      end_date =  (days_ago.days).ago
-      start_date = (days_ago+1).days.ago
-      
-      visits_hash = {}
-      Visit.between_dates( start_date, end_date).each do |visit|
-
-        visits_hash[visit.url] = visits_hash[visit.url] || {'url' => visit.url, 'visits' => 0}
-       
-        visits_hash[visit.url]['visits'] = visits_hash[visit.url]['visits']+1
-      end
-
       date_key = end_date.strftime(DATE_FORMAT)
-      days_hash[date_key] = visits_hash.values
-
+      days_hash[date_key]=top_by_attribute(visits, 5, 'url').collect do |top_visit|
+        { url: top_visit[0],
+          visits: top_visit[1].length
+        }
+      end
     end
    
     
@@ -67,8 +59,9 @@ class ReportMaker
       value =  url_hash[visit.send(attribute)] || []
       url_hash[visit.send(attribute)]=value.push(visit) 
     end
-    sorted_visits = url_hash.sort_by {|key, value| -value.count}
-    sorted_visits[0..top_amount]
+    sorted_visits = url_hash.sort_by {|key, visits| -visits.count}
+
+    sorted_visits.first(top_amount)
 
   end
 

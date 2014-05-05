@@ -21,7 +21,5 @@ describe TestData do
     Visit.filter('created_at < ? ', Time.now-10.days).count.should ==0
     
   end
-
-
-  
 end
+
