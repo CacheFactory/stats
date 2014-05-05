@@ -1,5 +1,7 @@
 #Stats application prototype
 
+A simple app that demonstrates using ROR without ActiveRecord, makes use of Sequel as its ORM and uses Angular.js to present JSON data.
+
 ###Rake tasks
 ===
 
