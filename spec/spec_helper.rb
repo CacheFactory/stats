@@ -46,8 +46,8 @@ RSpec.configure do |config|
     Rake.application = rake
     rake.init
     rake.load_rakefile
-    rake[:destroy_database].invoke
-    rake[:create_database].invoke
+    rake[:destroy_tables].invoke
+    rake[:create_tables].invoke
   end
 
 

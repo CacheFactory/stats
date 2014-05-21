@@ -1,5 +1,5 @@
 desc "create the database"
-task :create_database  => [:environment] do
+task :create_tables  => [:environment] do
    DB.create_table :visits do
     primary_key :id
     String :url
@@ -10,7 +10,7 @@ task :create_database  => [:environment] do
 end
 
 desc "destroy the database"
-task :destroy_database  => [:environment] do
+task :destroy_tables  => [:environment] do
   if DB.table_exists? :visits
     DB.drop_table :visits
   end
