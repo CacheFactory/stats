@@ -3,7 +3,7 @@
 A simple app that demonstrates using ROR without ActiveRecord, makes use of Sequel as its ORM and uses Angular.js to present JSON data.
 
 ###Setup
-You will need to create a mysql database and add its connection infor toe config/database.yml
+You will need to create a mysql database and add its connection info to config/database.yml
 
 ###Rake tasks
 ===
