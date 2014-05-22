@@ -15,7 +15,7 @@ creates the initial database
 
 deletes the database
 ```
-  $ rake destroy_tabels
+  $ rake destroy_tables
 ```
 
 creates 1 million test data rows
